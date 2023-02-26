@@ -10,6 +10,9 @@ const Checklist = () => {
     useEffect(() => { }, []);
 
     const [clicked, setClicked] = useState(false);
+    const [isReview, setIsReviewed] = useState(false);
+    
+    const styles = clicked ? {display: "none"} : {display: "inline-block"};
 
     const [checklist, setCheckList] = useState({
         team: "",
@@ -20,7 +23,7 @@ const Checklist = () => {
     });
 
     const handleChange = (e, index) => {
-        e.preventDefault();
+        // e.preventDefault();
         let newArray
         const { name, value } = e.target;
 
@@ -42,6 +45,11 @@ const Checklist = () => {
     const handleAdd = (e) => {
         e.preventDefault();
         setCheckList({ ...checklist, employees: [...checklist.employees, ""] });
+    }
+
+    const review = (e) => {
+        e.preventDefault();
+        setClicked(!clicked);
     }
 
     console.log("checklist", checklist);
@@ -80,16 +88,17 @@ const Checklist = () => {
     );
 
     return (
-        <div>
-            <Input
-                labelName="Team Name"
-                value={checklist.team}
-                forName="team"
-                name="team"
-                type="text"
-                handleChange={handleChange}
-            />
-            <form>
+        <div className="flex center column transparent">
+            <form onSubmit={(e) => review(e)} style={styles}>
+                <Input
+                    labelName="Team Name"
+                    value={checklist.team}
+                    forName="team"
+                    name="team"
+                    type="text"
+                    handleChange={handleChange}
+                />
+
                 {mappedInputs}
                 <h2>Are the following safety item properly addressed, identified, and communicated?</h2>
                 {mappedRadio}
@@ -105,10 +114,10 @@ const Checklist = () => {
                 <br />
                 {mappedEmployees}
                 <button onClick={handleAdd}>Add Employee</button>
+                <button>Review</button>
             </form>
             {/* below code for testing only. remove when done */}
-            <button onClick={() => setClicked(!clicked)}>Submit</button>
-            {clicked ? <ReviewForm checklist={checklist} /> : ""}
+            {clicked ? <ReviewForm checklist={checklist}/> : ""}
         </div>
 
 

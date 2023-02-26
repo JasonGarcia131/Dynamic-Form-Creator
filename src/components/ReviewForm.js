@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 
 const ReviewForm = (props) => {
 
-    const { checklist } = props;
+    const { checklist, styles } = props;
     let templateParams = {}
 
     // let templateParams = {
@@ -83,12 +83,13 @@ const ReviewForm = (props) => {
     )
     return (
         // <form onSubmit={sail}>
-        <div>
+        <div style={styles}>
             <h1>Review</h1>
             <h2>Team: {checklist.team}</h2>
             {mappedInputFieldNames}
             {mappedSafetyQuestions}
             <button onClick={(e) => sendEmail(e)}>Submit</button>
+            <button>Edit</button>
         </div>
         // </form>
 
