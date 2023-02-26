@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 
-const Radio = (props) => {
 
-    // useEffect(()=>{},[]);
+const selected = {
+    fontWeight: "750",
+    border: "1px solid white"
+}
+const notSelected = {
+    opacity: .3
+}
+
+const Radio = (props) => {
 
     const { radioQuestion, handleChange, index } = props;
 
@@ -10,15 +17,6 @@ const Radio = (props) => {
         yes: false,
         no: false
     });
-
-    const selected = {
-        fontWeight: "750",
-        border: "1px solid white"
-    }
-    const notSelected = {
-        opacity: .3
-    }
-
 
     return (
         <div>

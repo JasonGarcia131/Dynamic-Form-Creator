@@ -1,20 +1,30 @@
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
   background-color: rgba(117, 171, 59, 0.614);
-
 }
 
-form{
+li {
+  list-style: none;
+}
+
+label {
+  font-weight: 750;
+}
+
+img {
+  width: 100%;
+}
+
+form {
   padding: 10px 20px;
 }
 
 .App {
   text-align: center;
-
 }
 
 .home {
@@ -30,16 +40,16 @@ form{
   display: none;
 }
 
-.show > input{
+.show>input {
   margin: 5px;
 }
 
-button{
+button {
   border-radius: 0%;
   background-color: rgba(117, 171, 59, 0.614);
 }
 
-button:active{
+button:active {
   background-color: rgba(117, 171, 59, 0.956);
 }
 
@@ -47,14 +57,9 @@ button:active{
   display: inline-block;
 }
 
-.transparent{
-  background-color: rgba(117, 171, 59, 0.614);
-  /* background: transparent; */
-}
-
-.error{
- color: red;
- font-weight: 700;
+.error {
+  color: red;
+  font-weight: 700;
 }
 
 .center {
@@ -71,16 +76,8 @@ button:active{
 .input {
   border: none;
   border-bottom: 1px solid black;
-  /* color: white; */
-  /* background-color: rgba(0,0,0); */
   background: transparent;
   outline: none;
-  /* remove box when active */
-}
-
-
-img {
-  width: 100%;
 }
 
 .radio {
@@ -97,7 +94,7 @@ img {
   width: 50%;
 }
 
-label{
-  font-weight: 750;
+.form{
+  background-color: white;
+  margin: 10px 20px;
 }
-

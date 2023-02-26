@@ -4,15 +4,18 @@ import Input from "./Input";
 import { SAFTEYQUESTIONS, INPUTFIELDNAMES } from "../data";
 import ReviewForm from "./ReviewForm";
 
+const styles = {
+    hide: "hide",
+    show: "show"
+}
 
 const Checklist = () => {
 
     useEffect(() => { }, []);
 
-    const [clicked, setClicked] = useState(false);
     const [isReview, setIsReviewed] = useState(false);
-    
-    const styles = clicked ? {display: "none"} : {display: "inline-block"};
+
+    // const styles = clicked ? {display: "none"} : {display: "inline-block"};
 
     const [checklist, setCheckList] = useState({
         team: "",
@@ -22,8 +25,8 @@ const Checklist = () => {
         employees: [""]
     });
 
+    // One function to watch the changes for all input types.
     const handleChange = (e, index) => {
-        // e.preventDefault();
         let newArray
         const { name, value } = e.target;
 
@@ -41,7 +44,7 @@ const Checklist = () => {
         setCheckList({ ...checklist, [name]: newArray });
     }
 
-
+    // Adds empty element into employees array for new input.
     const handleAdd = (e) => {
         e.preventDefault();
         setCheckList({ ...checklist, employees: [...checklist.employees, ""] });
@@ -49,11 +52,10 @@ const Checklist = () => {
 
     const review = (e) => {
         e.preventDefault();
-        setClicked(!clicked);
+        setIsReviewed(!isReview);
     }
 
-    console.log("checklist", checklist);
-
+    // Maps through the employees and creates an input component.
     const mappedEmployees = checklist.employees.map((employee, index) =>
         <Input
             labelName="Employees"
@@ -67,29 +69,39 @@ const Checklist = () => {
         />
     );
 
+    // Maps through the array and creates an input component with the array element.
     const mappedInputs = INPUTFIELDNAMES.map((inputName, index) =>
-        <Input
-            labelName={inputName}
-            index={index}
-            value={checklist.input[index] ? checklist.input[index] : ""}
-            type="text"
-            forName="inputField"
-            name="input"
-            handleChange={handleChange}
-        />
-    );
+        <div>
+            <Input
+                labelName={inputName}
+                key={index}
+                index={index}
+                value={checklist.input[index] ? checklist.input[index] : ""}
+                type="text"
+                forName="inputField"
+                name="input"
+                handleChange={handleChange}
+            />
+            <br />
+        </div>
 
+    );
     const mappedRadio = SAFTEYQUESTIONS.map((question, index) =>
-        <Radio
-            radioQuestion={question}
-            key={index}
-            index={index}
-            handleChange={handleChange} />
+        <div>
+            <Radio
+                radioQuestion={question}
+                key={index}
+                index={index}
+                handleChange={handleChange}
+            />
+            <br />
+        </div>
+
     );
 
     return (
-        <div className="flex center column transparent">
-            <form onSubmit={(e) => review(e)} style={styles}>
+        <div className="flex center column form">
+            <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
                 <Input
                     labelName="Team Name"
                     value={checklist.team}
@@ -98,7 +110,7 @@ const Checklist = () => {
                     type="text"
                     handleChange={handleChange}
                 />
-
+                <br/>
                 {mappedInputs}
                 <h2>Are the following safety item properly addressed, identified, and communicated?</h2>
                 {mappedRadio}
@@ -116,8 +128,7 @@ const Checklist = () => {
                 <button onClick={handleAdd}>Add Employee</button>
                 <button>Review</button>
             </form>
-            {/* below code for testing only. remove when done */}
-            {clicked ? <ReviewForm checklist={checklist}/> : ""}
+            {isReview ? <ReviewForm checklist={checklist} review={review} /> : ""}
         </div>
 
 
