@@ -3,6 +3,8 @@ import Radio from "./Radio";
 import Input from "./Input";
 import { SAFTEYQUESTIONS, INPUTFIELDNAMES } from "../data";
 import ReviewForm from "./ReviewForm";
+import { SignatureComponent, Signature } from "@syncfusion/ej2-react-inputs";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 const styles = {
     hide: "hide",
@@ -10,6 +12,20 @@ const styles = {
 }
 
 const Checklist = () => {
+
+    let signObj = Signature || null;
+
+
+    const onSave = (e) => {
+        e.preventDefault();
+        // signObj?.save();
+        console.log(signObj);
+        setCheckList({...checklist, content: signObj.signatureValue})
+    }
+
+    const onClear = () => {
+        signObj?.clear();
+    }
 
     useEffect(() => { }, []);
 
@@ -22,7 +38,8 @@ const Checklist = () => {
         input: [""],
         radio: [""],
         textbox: "",
-        employees: [""]
+        employees: [""],
+        content: ""
     });
 
     // One function to watch the changes for all input types.
@@ -126,6 +143,17 @@ const Checklist = () => {
                 <br />
                 {mappedEmployees}
                 <button onClick={handleAdd}>Add Employee</button>
+                <SignatureComponent
+                ref={sign => signObj = sign}
+                backgroundColor="red"
+                strokeColor="white"
+                ></SignatureComponent>
+                <ButtonComponent
+                onClick={onSave}
+                >Save</ButtonComponent>
+                 <ButtonComponent
+                onClick={onClear}
+                >clear</ButtonComponent>
                 <button>Review</button>
             </form>
             {isReview ? <ReviewForm checklist={checklist} review={review} /> : ""}

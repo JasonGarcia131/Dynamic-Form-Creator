@@ -19,6 +19,7 @@ const ReviewForm = (props) => {
         templateParams.team = checklist.team;
         templateParams.textBox = checklist.textbox;
         templateParams.employees = checklist.employees;
+        templateParams.content = checklist.content;
 
     }, []);
 
@@ -33,7 +34,7 @@ const ReviewForm = (props) => {
     //Sends templateParams values as an object to be used as an email.
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.send('service_t81sqia', 'template_cb7usop', templateParams, "3wqMebJTzeXwpCO")
+        emailjs.send('service_t81sqia', 'template_cb7usop', templateParams, '3wqMebJTzeXwpCO5-')
             .then((result) => {
                 console.log(result.text);
                 if (result.text === "OK") setSuccess("Sent!");
