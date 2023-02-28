@@ -33,7 +33,7 @@ const HomePage = () => {
             <img src='tree-service-logo.png' alt="logo"/>
             <div className={isAuthenticated ? styles.hide : styles.show}>
                 <input
-                    type="text"
+                    type="password"
                     value={passcode}
                     placeholder="Enter passcode"
                     onChange={(e) => handleChange(e)}
