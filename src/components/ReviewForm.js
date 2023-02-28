@@ -9,10 +9,6 @@ const ReviewForm = (props) => {
     const { checklist, review } = props;
     const [success, setSuccess] = useState("");
 
-    console.log("template params", templateParams);
-
-
-
     // Creates an object from state nested arrays for email.js templateParams
     const arrayToObject = (array, stateArray) => {
         for (let i = 0; i < array.length; i++) {
@@ -32,10 +28,8 @@ const ReviewForm = (props) => {
         e.preventDefault();
         emailjs.send('service_t81sqia', 'template_cb7usop', templateParams, "3wqMebJTzeXwpCO5-")
             .then((result) => {
-                console.log(result.text);
                 if (result.text === "OK") setSuccess("Sent!");
             }, (error) => {
-                console.log(error.text);
                 setSuccess("Form was not sent! Please try again.");
             });
     };
