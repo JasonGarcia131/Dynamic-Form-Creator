@@ -74,7 +74,7 @@ const ReviewForm = (props) => {
             {mappedInputFieldNames}
             {mappedSafetyQuestions}
             <br/>
-            <p>Employees: </p>
+            <p>Employees and Title: </p>
             {mappedEmployees}
             <button onClick={(e) => sendEmail(e)}>Send Form</button>
             <button onClick={(e) => review(e)}>Edit</button>

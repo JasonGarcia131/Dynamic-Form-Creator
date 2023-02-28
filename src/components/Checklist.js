@@ -70,6 +70,12 @@ const Checklist = () => {
         setCheckList({ ...checklist, employees: [...checklist.employees, ""] });
     }
 
+    const handleRemove = (e, index) => {
+        e.preventDefault();
+        const filteredArray = checklist.employees.filter((employee, i)=>i != index);
+        setCheckList({ ...checklist, employees: filteredArray });
+    }
+
     const review = (e) => {
         e.preventDefault();
         setIsReviewed(!isReview);
@@ -77,16 +83,20 @@ const Checklist = () => {
 
     // Maps through the employees and creates an input component.
     const mappedEmployees = checklist.employees.map((employee, index) =>
-        <Input
-            labelName="Employees"
-            key={index}
-            index={index}
-            type="text"
-            forName="employeesField"
-            name="employees"
-            value={checklist.employees[index]}
-            handleChange={handleChange}
-        />
+        <div>
+            <Input
+                labelName="Employee and Title:"
+                key={index}
+                index={index}
+                type="text"
+                forName="employeesField"
+                name="employees"
+                value={checklist.employees[index]}
+                handleChange={handleChange}
+            />
+            <button className="btnLeft" onClick={(e)=>handleRemove(e, index)}>Remove</button>
+        </div>
+
     );
 
     // Maps through the array and creates an input component with the array element.
@@ -130,7 +140,7 @@ const Checklist = () => {
                     type="text"
                     handleChange={handleChange}
                 />
-                <br/>
+                <br />
                 {mappedInputs}
                 <h2>Are the following safety item properly addressed, identified, and communicated?</h2>
                 {mappedRadio}
@@ -157,6 +167,10 @@ const Checklist = () => {
                  <ButtonComponent
                 onClick={onClear}
                 >clear</ButtonComponent>
+                <br />
+                <button className="left" onClick={handleAdd}>Add Employee</button>
+                <br />
+                <br/>
                 <button>Review</button>
             </form>
             {isReview ? <ReviewForm checklist={checklist} review={review} /> : ""}
