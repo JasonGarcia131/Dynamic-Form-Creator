@@ -18,7 +18,7 @@ const HomePage = () => {
   
     //Authenticates users passcode 
     const handleSubmit = () => {
-      if (passcode != CREDENTIALS.password) return setError("Unauthorized");
+      if (Number(passcode) !== CREDENTIALS.password) return setError("Unauthorized");
       setIsAuthenticated(true);
     }
   
@@ -30,7 +30,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <img src='tree-service-logo.png'/>
+            <img src='tree-service-logo.png' alt="logo"/>
             <div className={isAuthenticated ? styles.hide : styles.show}>
                 <input
                     type="text"

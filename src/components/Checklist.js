@@ -22,7 +22,8 @@ const Checklist = () => {
         input: [""],
         radio: [""],
         textbox: "",
-        employees: [""]
+        employees: [""],
+        manager: ""
     });
 
     // One function to watch the changes for all input types.
@@ -30,7 +31,7 @@ const Checklist = () => {
         let newArray
         const { name, value } = e.target;
 
-        if (name === "textbox" || name === "team") return setCheckList({ ...checklist, [name]: value });
+        if (name === "textbox" || name === "team" || name === "manager") return setCheckList({ ...checklist, [name]: value });
 
         if (name === "employees") {
             newArray = [...checklist.employees];
@@ -52,7 +53,7 @@ const Checklist = () => {
 
     const handleRemove = (e, index) => {
         e.preventDefault();
-        const filteredArray = checklist.employees.filter((employee, i)=>i != index);
+        const filteredArray = checklist.employees.filter((employee, i)=>i !== index);
         setCheckList({ ...checklist, employees: filteredArray });
     }
 
@@ -63,10 +64,9 @@ const Checklist = () => {
 
     // Maps through the employees and creates an input component.
     const mappedEmployees = checklist.employees.map((employee, index) =>
-        <div>
+        <div key={index}>
             <Input
                 labelName="Employee and Title:"
-                key={index}
                 index={index}
                 type="text"
                 forName="employeesField"
@@ -81,10 +81,9 @@ const Checklist = () => {
 
     // Maps through the array and creates an input component with the array element.
     const mappedInputs = INPUTFIELDNAMES.map((inputName, index) =>
-        <div>
+        <div key={index}>
             <Input
                 labelName={inputName}
-                key={index}
                 index={index}
                 value={checklist.input[index] ? checklist.input[index] : ""}
                 type="text"
@@ -96,11 +95,11 @@ const Checklist = () => {
         </div>
 
     );
+
     const mappedRadio = SAFTEYQUESTIONS.map((question, index) =>
-        <div>
+        <div key={index}>
             <Radio
                 radioQuestion={question}
-                key={index}
                 index={index}
                 handleChange={handleChange}
             />
@@ -139,6 +138,14 @@ const Checklist = () => {
                 <button className="left" onClick={handleAdd}>Add Employee</button>
                 <br />
                 <br/>
+                <Input
+                    type="text"
+                    name="manager"
+                    value={checklist.manager}
+                    forName="manager"
+                    labelName="Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor"
+                    handleChange={handleChange}
+                />
                 <button>Review</button>
             </form>
             {isReview ? <ReviewForm checklist={checklist} review={review} /> : ""}
