@@ -112,7 +112,7 @@ const Checklist = () => {
         <div className="flex center column form">
             <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
                 <Input
-                    labelName="Team Name"
+                    labelName="Crew Leader"
                     value={checklist.team}
                     forName="team"
                     name="team"

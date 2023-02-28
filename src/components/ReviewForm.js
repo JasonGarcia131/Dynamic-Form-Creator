@@ -60,7 +60,7 @@ const ReviewForm = (props) => {
         <div className="form">
             <h1>Review Safety Form</h1>
             <br />
-            <h2>{checklist.team}</h2>
+            <h2>Crew Leader: {checklist.team}</h2>
             {mappedInputFieldNames}
             {mappedSafetyQuestions}
             <br />
