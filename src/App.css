@@ -96,6 +96,11 @@ button:active {
   padding: 10px 20px;
 }
 
+.form > input {
+  -webkit-appearance : none;
+  border-radius: 0;
+}
+
 .left {
   text-align: left;
 }
@@ -103,6 +108,10 @@ button:active {
 .btnLeft {
   text-align: left;
   width: 100%;
+}
+
+input[type="text"] {
+  
 }
 
 @media screen and (min-width: 700px) {

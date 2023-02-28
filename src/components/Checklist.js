@@ -86,7 +86,7 @@ const Checklist = () => {
                 labelName={inputName}
                 index={index}
                 value={checklist.input[index] ? checklist.input[index] : ""}
-                type="text"
+                type={inputName === "Date" ? "date" : "text"}
                 forName="inputField"
                 name="input"
                 handleChange={handleChange}
