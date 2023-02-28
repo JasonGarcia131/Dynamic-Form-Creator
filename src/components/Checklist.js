@@ -23,6 +23,7 @@ const Checklist = () => {
         setCheckList({...checklist, content: signObj.signatureValue})
     }
 
+
     const onClear = () => {
         signObj?.clear();
     }
@@ -41,6 +42,8 @@ const Checklist = () => {
         employees: [""],
         content: ""
     });
+
+    console.log("checklist content", checklist.content)
 
     // One function to watch the changes for all input types.
     const handleChange = (e, index) => {
