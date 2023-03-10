@@ -18,15 +18,11 @@ export const SAFTEYQUESTIONS = [
     ];
 export const INPUTFIELDNAMES = [
     "Date",
-    "Time Arrived",
-    "Time departed",
     "Region",
     "SubContractor Name",
     "General Foreperson Name",
     "Member Name",
     "Member ID #",
-    "Member Name 2",
-    "Member ID 2 #",
     "Truck ID #",
     "Chipper ID #",
     "Section",

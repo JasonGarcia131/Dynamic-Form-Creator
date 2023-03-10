@@ -15,7 +15,8 @@ const Radio = (props) => {
 
     const [isSelected, setIsSelected] = useState({
         yes: false,
-        no: false
+        no: false,
+        na: false
     });
 
     return (
@@ -27,7 +28,7 @@ const Radio = (props) => {
                     type="radio"
                     name="radio"
                     value="Yes"
-                    onClick={()=>setIsSelected({yes: true, no: false})}
+                    onClick={()=>setIsSelected({yes: true, no: false, na: false})}
                     onChange={(e) => handleChange(e, index)}
                 />
                 <span style={isSelected.no ? selected : notSelected}>No</span>
@@ -35,7 +36,15 @@ const Radio = (props) => {
                     type="radio"
                     name="radio"
                     value="No"   
-                    onClick={()=>setIsSelected({yes: false, no: true})}                 
+                    onClick={()=>setIsSelected({yes: false, no: true, na: false})}                 
+                    onChange={(e) => handleChange(e, index)}
+                />
+                <span style={isSelected.na ? selected : notSelected}>N/A</span>
+                 <input
+                    type="radio"
+                    name="radio"
+                    value="N/A"   
+                    onClick={()=>setIsSelected({yes: false, no: false, na: true})}                 
                     onChange={(e) => handleChange(e, index)}
                 />
             </div>
