@@ -16,9 +16,26 @@ const ReviewForm = (props) => {
         }
     }
 
+    const format = (H,M) => {
+        return `${(H%12<10?'0':'')+H%12}:${(M<10?'0':'')+M} ${H<12?'AM':'PM'}`
+    }
+
+    const timeArrived = checklist.timeIn.split(":");
+    const timeArrivedHour = timeArrived[0];
+    const timeArrivedMinutes = timeArrived[1];        
+    const timeDeparted = checklist.timeOut.split(":");
+    const timeDepartedHour = timeDeparted[0];
+    const timeDepartedMinutes = timeDeparted[1];     
+    
+    const timeArrivedConverted = format(timeArrivedHour, timeArrivedMinutes);
+    const timeDepartedConverted = format(timeDepartedHour, timeDepartedMinutes);
+        
+    // Creating key pair values for object to send to emailjs
     arrayToObject(INPUTFIELDNAMES, checklist.input);
     arrayToObject(SAFTEYQUESTIONS, checklist.radio);
     templateParams.team = checklist.team;
+    templateParams.timeArrived = timeArrivedConverted;
+    templateParams.timeDeparted = timeDepartedConverted;
     templateParams.textBox = checklist.textbox;
     templateParams.manager = checklist.manager;
     templateParams.employee1 = checklist.employee1;
@@ -74,8 +91,8 @@ const ReviewForm = (props) => {
             <h1>Review Safety Form</h1>
             <br />
             <h2>Crew Leader: {checklist.team}</h2>
-            <p>Time Arrived: {checklist.timeIn}</p>
-            <p>Time Departed: {checklist.timeOut}</p>
+            <p>Time Arrived: {timeArrivedConverted}</p>
+            <p>Time Departed: {timeDepartedConverted}</p>
             {mappedInputFieldNames}
             {mappedSafetyQuestions}
             <br />
