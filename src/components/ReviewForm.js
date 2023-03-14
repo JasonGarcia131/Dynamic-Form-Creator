@@ -16,8 +16,10 @@ const ReviewForm = (props) => {
         }
     }
 
+    //Converts 24 hour time to 12 hour time
     const format = (H,M) => {
-        return `${(H%12<10?'0':'')+H%12}:${(M<10?'0':'')+M} ${H<12?'AM':'PM'}`
+        if(H%12 == 0) return `12:${(M<10?'0':'')+M} ${H<12?'AM':'PM'}`;
+        else return `${(H%12<10?'0':'')+H%12}:${(M<10?'0':'')+M} ${H<12?'AM':'PM'}`;
     }
 
     const timeArrived = checklist.timeIn.split(":");
