@@ -36,8 +36,6 @@ const Checklist = () => {
         timeOut: ""
     });
 
-    console.log("time in type ", typeof checklist.timeIn)
-
     // One function to watch the changes for all input types.
     const handleChange = (e, index) => {
         let newArray
