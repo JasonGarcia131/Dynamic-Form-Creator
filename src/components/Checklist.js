@@ -11,10 +11,12 @@ const styles = {
 
 const Checklist = ({ username }) => {
 
-    useEffect(() => { }, []);
+    // useEffect(() => { }, []);
 
+    //State variable to control review component through a ternary
     const [isReview, setIsReviewed] = useState(false);
 
+    //State variable for all inputs.
     const [checklist, setCheckList] = useState({
         team: username,
         input: [""],
@@ -22,13 +24,13 @@ const Checklist = ({ username }) => {
         textbox: "",
         employee1: "",
         title1: "",
-        consent1: "",
+        consent1: "n/a",
         employee2: "",
         title2: "",
-        consent2: "",
+        consent2: "n/a",
         employee3: "",
         title3: "",
-        consent3: "",
+        consent3: "n/a",
         manager: "",
         timeIn: "",
         timeOut: ""
@@ -63,6 +65,7 @@ const Checklist = ({ username }) => {
         setCheckList({ ...checklist, [name]: newArray });
     }
 
+    //Watches the changes for employee acknowledgment section.
     const handleChangeEmployee = (e, index) => {
         const { name, value } = e.target;
         setCheckList({ ...checklist, [name]: value });
@@ -86,44 +89,6 @@ const Checklist = ({ username }) => {
         e.preventDefault();
         setIsReviewed(!isReview);
     }
-
-    // Maps through the employees and creates an input component.
-    // const mappedEmployees = checklist.employees.map((employee, index) =>
-    //     <div key={index}>
-    //         <Input
-    //             labelName="Employee:"
-    //             index={index}
-    //             type="text"
-    //             forName="employeesField"
-    //             name="empName"
-    //             value={checklist.employees[index].empName}
-    //             handleChange={handleChange}
-    //         />
-    //         <Input
-    //             labelName="Title:"
-    //             index={index}
-    //             type="text"
-    //             forName="employeesField"
-    //             name="title"
-    //             value={checklist.employees[index].title}
-    //             handleChange={handleChange}
-    //         />
-    //         <p>
-    //             By clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-    //         </p>
-    //         <Input
-    //             labelName="Acknowledgement:"
-    //             index={index}
-    //             type="checkbox"
-    //             forName="employeesField"
-    //             name="consent"
-    //             value="yes"
-    //             handleChange={handleChange}
-    //         />
-    //         <button className="btnLeft" onClick={(e) => handleRemove(e, index)}>Remove</button>
-    //     </div>
-
-    // );
 
     // Maps through the array and creates an input component with the array element.
     const mappedInputs = INPUTFIELDNAMES.map((inputName, index) =>
@@ -155,8 +120,9 @@ const Checklist = ({ username }) => {
 
     return (
         <div className="flex center column form">
-            <h1>Welcome, {username}</h1>
+
             <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
+                <h1>Welcome, {username}</h1>
                 <Input
                     labelName="Crew Leader"
                     value={checklist.team}
@@ -196,8 +162,6 @@ const Checklist = ({ username }) => {
                 />
                 <br />
                 <br />
-                {/* Had to repeat code for email.js simplicity */}
-                {/* {mappedEmployees} */}
                 <form>
                     <fieldset>
                         <legend>Acknowledgement</legend>
@@ -232,8 +196,6 @@ const Checklist = ({ username }) => {
                         </div>
                     </fieldset>
                 </form>
-
-
                 <br />
                 <br />
                 <form>
@@ -270,7 +232,6 @@ const Checklist = ({ username }) => {
                         </div>
                     </fieldset>
                 </form>
-
                 <br />
                 <br />
                 <form>
@@ -308,7 +269,6 @@ const Checklist = ({ username }) => {
 
                     </fieldset>
                 </form>
-
                 <br />
                 <br />
                 <Input
@@ -319,6 +279,7 @@ const Checklist = ({ username }) => {
                     labelName="Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor"
                     handleChange={handleChange}
                 />
+                <br />
                 <button>Review</button>
             </form>
             {isReview ? <ReviewForm checklist={checklist} review={review} /> : ""}

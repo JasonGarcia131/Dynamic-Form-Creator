@@ -70,27 +70,15 @@ const ReviewForm = (props) => {
 
     const mappedSafetyQuestions = SAFTEYQUESTIONS.map((questions, index) =>
         <ul>
-            <li>{index + 1}. {questions}</li>
+            <li className="font-weight">{index + 1}. {questions}</li>
             <li>{checklist.radio[index]}</li>
         </ul>
     );
 
-    // const mappedEmployees = checklist.employees.map((employee, index) =>
-    //     <ul>
-    //         <li>
-    //             <p>Employee and Title </p>
-    //             {employee.empName}- {employee.title}
-    //         </li>
-    //         <li>
-    //             <p>I consent: </p>
-    //             {employee.consent}
-    //         </li>
-    //     </ul>
-    // );
-
     return (
         <div className="form">
             <h1>Review Safety Form</h1>
+            <hr/>
             <br />
             <h2>Crew Leader: {checklist.team}</h2>
             <p>Time Arrived: {timeArrivedConverted}</p>
@@ -98,28 +86,26 @@ const ReviewForm = (props) => {
             {mappedInputFieldNames}
             {mappedSafetyQuestions}
             <br />
-            {/* {mappedEmployees}
-             */}
              <ul>
-                <li>
+                <li className="font-weight">
                     <p>Employee: {checklist.employee1}</p>
                     <p>Title: {checklist.title1}</p> 
                     <p>Consent: {checklist.consent1}</p>
                 </li>
-                <li>
+                <li className="font-weight">
                     <p>Employee: {checklist.employee2}</p>
                     <p>Title: {checklist.title2}</p> 
                     <p>Consent: {checklist.consent2}</p>
                 </li>
-                <li>
+                <li className="font-weight">
                     <p>Employee: {checklist.employee3}</p>
                     <p>Title: {checklist.title3}</p> 
                     <p>Consent: {checklist.consent3}</p>
                 </li>
              </ul>
-            <p>Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor: {checklist.manager}</p>
-            <button onClick={(e) => sendEmail(e)}>Send Form</button>
-            <button onClick={(e) => review(e)}>Edit</button>
+            <p className="font-weight">Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor: {checklist.manager}</p>
+            <button className="margin" onClick={(e) => sendEmail(e)}>Send Form</button>
+            <button className="margin" onClick={(e) => review(e)}>Edit</button>
             <p className="error">{success}</p>
         </div>
     )

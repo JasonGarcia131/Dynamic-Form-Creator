@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Checklist from './Checklist';
 
+//User credentials
 const CREDENTIALS = [
   {
     username: "Jason",
@@ -8,10 +9,11 @@ const CREDENTIALS = [
   },
   {
     username: "Arturo",
-    password: 5678
+    password: 1234
   },
 ]
 
+//Dynamic styles to control component render.
 const styles = {
   hide: "hide",
   show: "show"
