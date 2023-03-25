@@ -9,16 +9,14 @@ const styles = {
     show: "show"
 }
 
-const Checklist = () => {
+const Checklist = ({ username }) => {
 
     useEffect(() => { }, []);
 
     const [isReview, setIsReviewed] = useState(false);
 
-    // const styles = clicked ? {display: "none"} : {display: "inline-block"};
-
     const [checklist, setCheckList] = useState({
-        team: "",
+        team: username,
         input: [""],
         radio: [""],
         textbox: "",
@@ -111,7 +109,7 @@ const Checklist = () => {
     //             handleChange={handleChange}
     //         />
     //         <p>
-    //             Acknowledgement: by clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+    //             By clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
     //         </p>
     //         <Input
     //             labelName="Acknowledgement:"
@@ -157,6 +155,7 @@ const Checklist = () => {
 
     return (
         <div className="flex center column form">
+            <h1>Welcome, {username}</h1>
             <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
                 <Input
                     labelName="Crew Leader"
@@ -199,91 +198,117 @@ const Checklist = () => {
                 <br />
                 {/* Had to repeat code for email.js simplicity */}
                 {/* {mappedEmployees} */}
-                <Input
-                    type="text"
-                    name="employee1"
-                    value={checklist.employee1}
-                    forName="comments"
-                    labelName="Employee 1"
-                    handleChange={handleChangeEmployee}
-                />
-                <Input
-                    type="text"
-                    name="title1"
-                    value={checklist.title1}
-                    forName="comments"
-                    labelName="Title"
-                    handleChange={handleChangeEmployee}
-                />
-                <p>
-                    Acknowledgement: by clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                </p>
-                <Input
-                    labelName="Yes:"
-                    type="checkbox"
-                    forName="employeesField"
-                    name="consent1"
-                    value="yes"
-                    handleChange={handleChangeEmployee}
-                />
+                <form>
+                    <fieldset>
+                        <legend>Acknowledgement</legend>
+                        <div className="border">
+                            <Input
+                                type="text"
+                                name="employee1"
+                                value={checklist.employee1}
+                                forName="comments"
+                                labelName="Employee 1"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <Input
+                                type="text"
+                                name="title1"
+                                value={checklist.title1}
+                                forName="comments"
+                                labelName="Title"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <p>
+                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                            </p>
+                            <Input
+                                labelName=""
+                                type="checkbox"
+                                forName="employeesField"
+                                name="consent1"
+                                value="yes"
+                                handleChange={handleChangeEmployee}
+                            />
+                        </div>
+                    </fieldset>
+                </form>
+
+
                 <br />
                 <br />
-                <Input
-                    type="text"
-                    name="employee2"
-                    value={checklist.employee2}
-                    forName="comments"
-                    labelName="Employee 2"
-                    handleChange={handleChangeEmployee}
-                />
-                <Input
-                    type="text"
-                    name="title2"
-                    value={checklist.title2}
-                    forName="comments"
-                    labelName="Title"
-                    handleChange={handleChangeEmployee}
-                />
-                <p>
-                    Acknowledgement: by clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                </p>
-                <Input
-                    labelName="Yes:"
-                    type="checkbox"
-                    forName="employeesField"
-                    name="consent2"
-                    value="yes"
-                    handleChange={handleChangeEmployee}
-                />
+                <form>
+                    <fieldset>
+                        <legend>Acknowledgement</legend>
+                        <div className="border">
+                            <Input
+                                type="text"
+                                name="employee2"
+                                value={checklist.employee2}
+                                forName="comments"
+                                labelName="Employee 2"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <Input
+                                type="text"
+                                name="title2"
+                                value={checklist.title2}
+                                forName="comments"
+                                labelName="Title"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <p>
+                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                            </p>
+                            <Input
+                                labelName=""
+                                type="checkbox"
+                                forName="employeesField"
+                                name="consent2"
+                                value="yes"
+                                handleChange={handleChangeEmployee}
+                            />
+                        </div>
+                    </fieldset>
+                </form>
+
                 <br />
                 <br />
-                <Input
-                    type="text"
-                    name="employee3"
-                    value={checklist.employee3}
-                    forName="comments"
-                    labelName="Employee 3"
-                    handleChange={handleChangeEmployee}
-                />
-                <Input
-                    type="text"
-                    name="title3"
-                    value={checklist.title3}
-                    forName="comments"
-                    labelName="Title"
-                    handleChange={handleChangeEmployee}
-                />
-                <p>
-                    Acknowledgement: by clicking "yes" on the acknowledgment box, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                </p>
-                <Input
-                    labelName="Yes:"
-                    type="checkbox"
-                    forName="employeesField"
-                    name="consent3"
-                    value="yes"
-                    handleChange={handleChangeEmployee}
-                />
+                <form>
+                    <fieldset>
+                        <legend>Acknowledgement</legend>
+                        <div className="border">
+                            <Input
+                                type="text"
+                                name="employee3"
+                                value={checklist.employee3}
+                                forName="comments"
+                                labelName="Employee 3"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <Input
+                                type="text"
+                                name="title3"
+                                value={checklist.title3}
+                                forName="comments"
+                                labelName="Title"
+                                handleChange={handleChangeEmployee}
+                            />
+                            <p>
+                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                            </p>
+                            <Input
+                                labelName=""
+                                type="checkbox"
+                                forName="employeesField"
+                                name="consent3"
+                                value="yes"
+                                handleChange={handleChangeEmployee}
+                            />
+                        </div>
+
+                    </fieldset>
+                </form>
+
                 <br />
                 <br />
                 <Input

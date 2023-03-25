@@ -7,6 +7,10 @@ body {
   background-color: rgba(117, 171, 59, 0.614);
 }
 
+legend{
+  font-weight: 750;
+}
+
 li {
   list-style: none;
 }
@@ -69,12 +73,20 @@ button:active {
   align-content: center;
 }
 
+.margin{
+  margin: 5px;
+}
+
 .input {
   border: none;
   border-bottom: 1px solid black;
   background: transparent;
   outline: none;
 }
+
+/* .border{
+  border: 2px dashed rgba(117, 171, 59, 0.956);
+} */
 
 .radio {
   border: 1px solid black;
