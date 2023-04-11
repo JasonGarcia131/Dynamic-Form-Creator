@@ -11,6 +11,10 @@ const CREDENTIALS = [
     username: "Arturo",
     password: 1234
   },
+  {
+    username: "JoseF",
+    password: 2525
+  },
 ]
 
 //Dynamic styles to control component render.
