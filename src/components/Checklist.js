@@ -13,6 +13,8 @@ const Checklist = ({ username }) => {
 
     // useEffect(() => { }, []);
 
+    const [imageUploads, setImageUploads] = useState([""]);
+
     //State variable to control review component through a ternary
     const [isReview, setIsReviewed] = useState(false);
 
@@ -33,7 +35,9 @@ const Checklist = ({ username }) => {
         consent3: "n/a",
         manager: "",
         timeIn: "",
-        timeOut: ""
+        timeOut: "",
+        imageOne: "",
+        imageTwo: ""
     });
 
     // One function to watch the changes for all input types.
@@ -63,6 +67,23 @@ const Checklist = ({ username }) => {
         }
         newArray[index] = value;
         setCheckList({ ...checklist, [name]: newArray });
+    }
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        const { name } = e.target
+
+        if (file && file.type.substring(0, 5) === 'image') {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                // setIsLoading(false);
+                // setUploadBtn(true);
+                //Sets the name of the key based on the string that was passed in the props.
+                //This is for the userControllers to know which field to update in the Users db collection. 
+                setCheckList((prevData) => ({ ...prevData, [name]: reader.result }));
+            }
+        }
     }
 
     //Watches the changes for employee acknowledgment section.
@@ -120,9 +141,20 @@ const Checklist = ({ username }) => {
 
     return (
         <div className="flex center column form">
-
             <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
                 <h1>Welcome, {username}</h1>
+                <input
+                    type="file"
+                    name="imageOne"
+                    accept="/image/*"
+                    onChange={(e) => handleImageChange(e)}
+                />
+                <input
+                    type="file"
+                    name="imageTwo"
+                    accept="/image/*"
+                    onChange={(e) => handleImageChange(e)}
+                />
                 <Input
                     labelName="Crew Leader"
                     value={checklist.team}
@@ -162,113 +194,109 @@ const Checklist = ({ username }) => {
                 />
                 <br />
                 <br />
-                <form>
-                    <fieldset>
-                        <legend>Acknowledgement</legend>
-                        <div className="border">
-                            <Input
-                                type="text"
-                                name="employee1"
-                                value={checklist.employee1}
-                                forName="comments"
-                                labelName="Employee 1"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <Input
-                                type="text"
-                                name="title1"
-                                value={checklist.title1}
-                                forName="comments"
-                                labelName="Title"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <p>
-                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                            </p>
-                            <Input
-                                labelName=""
-                                type="checkbox"
-                                forName="employeesField"
-                                name="consent1"
-                                value="yes"
-                                handleChange={handleChangeEmployee}
-                            />
-                        </div>
-                    </fieldset>
-                </form>
+                <fieldset>
+                    <legend>Acknowledgement</legend>
+                    <div className="border">
+                        <Input
+                            type="text"
+                            name="employee1"
+                            value={checklist.employee1}
+                            forName="comments"
+                            labelName="Employee 1"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <Input
+                            type="text"
+                            name="title1"
+                            value={checklist.title1}
+                            forName="comments"
+                            labelName="Title"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <p>
+                            By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                        </p>
+                        <Input
+                            labelName=""
+                            type="checkbox"
+                            forName="employeesField"
+                            name="consent1"
+                            value="yes"
+                            handleChange={handleChangeEmployee}
+                        />
+                    </div>
+                </fieldset>
                 <br />
                 <br />
-                <form>
-                    <fieldset>
-                        <legend>Acknowledgement</legend>
-                        <div className="border">
-                            <Input
-                                type="text"
-                                name="employee2"
-                                value={checklist.employee2}
-                                forName="comments"
-                                labelName="Employee 2"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <Input
-                                type="text"
-                                name="title2"
-                                value={checklist.title2}
-                                forName="comments"
-                                labelName="Title"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <p>
-                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                            </p>
-                            <Input
-                                labelName=""
-                                type="checkbox"
-                                forName="employeesField"
-                                name="consent2"
-                                value="yes"
-                                handleChange={handleChangeEmployee}
-                            />
-                        </div>
-                    </fieldset>
-                </form>
+                <fieldset>
+                    <legend>Acknowledgement</legend>
+                    <div className="border">
+                        <Input
+                            type="text"
+                            name="employee2"
+                            value={checklist.employee2}
+                            forName="comments"
+                            labelName="Employee 2"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <Input
+                            type="text"
+                            name="title2"
+                            value={checklist.title2}
+                            forName="comments"
+                            labelName="Title"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <p>
+                            By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                        </p>
+                        <Input
+                            labelName=""
+                            type="checkbox"
+                            forName="employeesField"
+                            name="consent2"
+                            value="yes"
+                            handleChange={handleChangeEmployee}
+                        />
+                    </div>
+                </fieldset>
                 <br />
                 <br />
-                <form>
-                    <fieldset>
-                        <legend>Acknowledgement</legend>
-                        <div className="border">
-                            <Input
-                                type="text"
-                                name="employee3"
-                                value={checklist.employee3}
-                                forName="comments"
-                                labelName="Employee 3"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <Input
-                                type="text"
-                                name="title3"
-                                value={checklist.title3}
-                                forName="comments"
-                                labelName="Title"
-                                handleChange={handleChangeEmployee}
-                            />
-                            <p>
-                                By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
-                            </p>
-                            <Input
-                                labelName=""
-                                type="checkbox"
-                                forName="employeesField"
-                                name="consent3"
-                                value="yes"
-                                handleChange={handleChangeEmployee}
-                            />
-                        </div>
 
-                    </fieldset>
-                </form>
+                <fieldset>
+                    <legend>Acknowledgement</legend>
+                    <div className="border">
+                        <Input
+                            type="text"
+                            name="employee3"
+                            value={checklist.employee3}
+                            forName="comments"
+                            labelName="Employee 3"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <Input
+                            type="text"
+                            name="title3"
+                            value={checklist.title3}
+                            forName="comments"
+                            labelName="Title"
+                            handleChange={handleChangeEmployee}
+                        />
+                        <p>
+                            By checking the box below, I hereby confirm that the information provided above is accurate, correct and can be used by the company at the company's descretion.
+                        </p>
+                        <Input
+                            labelName=""
+                            type="checkbox"
+                            forName="employeesField"
+                            name="consent3"
+                            value="yes"
+                            handleChange={handleChangeEmployee}
+                        />
+                    </div>
+
+                </fieldset>
+
                 <br />
                 <br />
                 <Input

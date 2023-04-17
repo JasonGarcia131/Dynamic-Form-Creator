@@ -3,7 +3,7 @@ const Input = (props) => {
     const {handleChange, index, labelName, value, name, type, forName} = props;
 
     return (
-        <div className="flex column left">
+        <div className="flex column left margin">
             <label htmlFor={forName}>{labelName}</label>
             <input
                 className="input"

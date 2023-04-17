@@ -1,5 +1,6 @@
 import { INPUTFIELDNAMES, SAFTEYQUESTIONS } from "../data";
 import { useState } from "react";
+import axios from "axios";
 import emailjs from '@emailjs/browser';
 
 let templateParams = {}
@@ -49,6 +50,10 @@ const ReviewForm = (props) => {
     templateParams.employee3 = checklist.employee3;
     templateParams.title3 = checklist.title3;
     templateParams.consent3= checklist.consent3;
+    templateParams.imageOne= checklist.imageOne;
+    templateParams.imageTwo= checklist.imageTwo;
+
+    console.log("checklist", checklist);
 
     //Sends templateParams values as an object to be used as an email.
     const sendEmail = (e) => {
@@ -60,6 +65,18 @@ const ReviewForm = (props) => {
                 setSuccess("Form was not sent! Please try again.");
             });
     };
+
+    const handleSubmit = async (e) => {
+        // sendEmail(e);
+
+        try{
+            const response = await axios.post("http://localhost:5000/inspection/submit", checklist);
+            console.log("response", response);
+        }catch(e){
+            console.log(e);
+        }
+
+    }
 
     const mappedInputFieldNames = INPUTFIELDNAMES.map((inputNames, index) =>
         <div>
@@ -104,7 +121,7 @@ const ReviewForm = (props) => {
                 </li>
              </ul>
             <p className="font-weight">Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor: {checklist.manager}</p>
-            <button className="margin" onClick={(e) => sendEmail(e)}>Send Form</button>
+            <button className="margin" onClick={(e) => handleSubmit(e)}>Send Form</button>
             <button className="margin" onClick={(e) => review(e)}>Edit</button>
             <p className="error">{success}</p>
         </div>

@@ -16,6 +16,7 @@ export const SAFTEYQUESTIONS = [
      "Is the job briefing written and understood",
      "Was the truck inspection done"
     ];
+
 export const INPUTFIELDNAMES = [
     "Date",
     "Region",
