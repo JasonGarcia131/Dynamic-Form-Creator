@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Checklist from './Checklist';
+import Checklist2 from './Checklist2';
+
 
 //User credentials
 const CREDENTIALS = [
@@ -71,7 +73,7 @@ const HomePage = () => {
       {
         isAuthenticated &&
         <>
-          <Checklist username={passcode.username}/>
+          <Checklist2 username={passcode.username}/>
         </>
 
       }

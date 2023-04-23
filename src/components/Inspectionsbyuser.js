@@ -3,9 +3,12 @@
 // import { INPUTFIELDNAMES } from "../data";
 // import { SAFTEYQUESTIONS } from "../data";
 
-// const Inspections = (props) => {
+// const Inspectionsbyuser = (props) => {
 
 //     const [inspections, setInspections] = useState([]);
+
+//     const username = window.location.pathname;
+//     console.log("username", username);
 
 //     useEffect(() => {
 //         getInspections();
@@ -13,7 +16,7 @@
 
 //     const getInspections = async () => {
 //         try {
-//             const response = await axios.get("http://localhost:5000/inspection/all");
+//             const response = await axios.get(`http://localhost:5000/inspection/${username}`);
 //             console.log("response", response.data);
 //             setInspections(response.data)
 //         } catch (e) {
@@ -66,4 +69,4 @@
 //     )
 // }
 
-// export default Inspections;
+// export default Inspectionsbyuser;

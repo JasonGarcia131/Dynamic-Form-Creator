@@ -8,6 +8,19 @@ body {
   font-family: 'Times New Roman', Times, serif;
 }
 
+table, td, tr, th {
+  border: 1px solid black;
+}
+
+
+table{
+  width: 100%;
+}
+
+table{
+  width: 3rem;
+}
+
 legend{
   font-weight: 750;
 }
@@ -26,6 +39,10 @@ img {
 
 .App {
   text-align: center;
+}
+
+.table-container{
+  overflow: scroll;
 }
 
 .home {
@@ -121,6 +138,10 @@ button:active {
 
 .font-weight{
   font-weight: 750;
+}
+
+.review-image{
+  width: 20%;
 }
 
 @media screen and (min-width: 700px) {
