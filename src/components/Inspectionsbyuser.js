@@ -1,72 +1,60 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-// import { INPUTFIELDNAMES } from "../data";
-// import { SAFTEYQUESTIONS } from "../data";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-// const Inspectionsbyuser = (props) => {
+const Inspectionsbyuser = (props) => {
 
-//     const [inspections, setInspections] = useState([]);
+    const [inspections, setInspections] = useState([]);
 
-//     const username = window.location.pathname;
-//     console.log("username", username);
+    const path = window.location.pathname;
+    const submittedBy = path.split('/').pop();
 
-//     useEffect(() => {
-//         getInspections();
-//     }, []);
+    useEffect(() => {
+        getInspections();
+    }, []);
 
-//     const getInspections = async () => {
-//         try {
-//             const response = await axios.get(`http://localhost:5000/inspection/${username}`);
-//             console.log("response", response.data);
-//             setInspections(response.data)
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     }
+    const getInspections = async () => {
+        try {
+            console.log("submmitedBy", submittedBy)
+            const response = await axios.get(`http://localhost:5000/inspection/${submittedBy}`);
+            console.log("response", response.data);
+            setInspections(response.data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-//     const mappedInspections = inspections.map((inspection) => {
-//         return (
-//             <tr>
-//                 <td>{inspection.date}</td>
-//                 <td>{inspection.username}</td>
-//             </tr>
+    const mappedResponses = inspections.map((question) => {
+        return (
+            <tr>
+                <td>{question.questions[0].response}</td>
+                <td><Link to={`http://localhost:3000/admin-page/inspections/${submittedBy}/${question._id}`}>{question._id}</Link></td>
+            </tr>
 
-//         )
-//     });
+        )
+    });
 
-//     const mappedInputFieldNames = INPUTFIELDNAMES.map((inputNames, index) =>
-//         <th>
-//             {inputNames}
-//         </th>
-//     );
+    console.log("inspections", inspections)
+    return (
+        <div>
+            <p>total inspections:{inspections.length}</p>
+            <div className="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Submitted On</th>
+                            <th>Inspection id</th>
+                        </tr>
+                    </thead>
+                
+                <tbody>
+                    {mappedResponses}
+                </tbody>
+                </table>
+            </div>
 
-//     const mappedSafetyQuestions = SAFTEYQUESTIONS.map((questions, index) =>
-//         <th>
-//             {questions}
-//         </th>
-//     );
+        </div>
+    )
+}
 
-//     return (
-//         <div>
-//             <p>total inspections:{inspections.length}</p>
-//             <div className="table-container">
-//                  <table>
-//                 <thead>
-//                     <tr>
-//                         <th>Date</th>
-//                         <th>Inspection done by:</th>
-//                         {mappedInputFieldNames}
-//                         {mappedSafetyQuestions}
-//                     </tr>
-//                 </thead>
-//             </table>
-//             <tbody>
-//                 {mappedInspections}
-//             </tbody>
-//             </div>
-           
-//         </div>
-//     )
-// }
-
-// export default Inspectionsbyuser;
+export default Inspectionsbyuser;

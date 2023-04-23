@@ -1,69 +1,54 @@
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-// import { INPUTFIELDNAMES } from "../data";
-// import { SAFTEYQUESTIONS } from "../data";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-// const Inspections = (props) => {
+const Inspections = (props) => {
 
-//     const [inspections, setInspections] = useState([]);
+    const [inspections, setInspections] = useState([]);
 
-//     useEffect(() => {
-//         getInspections();
-//     }, []);
+    useEffect(() => {
+        getInspections();
+    }, []);
 
-//     const getInspections = async () => {
-//         try {
-//             const response = await axios.get("http://localhost:5000/inspection/all");
-//             console.log("response", response.data);
-//             setInspections(response.data)
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     }
+    const getInspections = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/inspection/all");
+            console.log("response", response.data);
+            setInspections(response.data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-//     const mappedInspections = inspections.map((inspection) => {
-//         return (
-//             <tr>
-//                 <td>{inspection.date}</td>
-//                 <td>{inspection.username}</td>
-//             </tr>
+    const mappedInspections = inspections.map((inspection) => {
+        return (
+            <tr>
+                <td>{inspection.questions[0].response}</td>
+                <Link to={`/admin-page/inspections/${inspection.submittedBy}`}>{inspection.submittedBy}</Link >
+            </tr>
 
-//         )
-//     });
+        )
+    });
 
-//     const mappedInputFieldNames = INPUTFIELDNAMES.map((inputNames, index) =>
-//         <th>
-//             {inputNames}
-//         </th>
-//     );
-
-//     const mappedSafetyQuestions = SAFTEYQUESTIONS.map((questions, index) =>
-//         <th>
-//             {questions}
-//         </th>
-//     );
-
-//     return (
-//         <div>
-//             <p>total inspections:{inspections.length}</p>
-//             <div className="table-container">
-//                  <table>
-//                 <thead>
-//                     <tr>
-//                         <th>Date</th>
-//                         <th>Inspection done by:</th>
-//                         {mappedInputFieldNames}
-//                         {mappedSafetyQuestions}
-//                     </tr>
-//                 </thead>
-//             </table>
-//             <tbody>
-//                 {mappedInspections}
-//             </tbody>
-//             </div>
+    return (
+        <div>
+            <p>total inspections:{inspections.length}</p>
+            <div className="table-container">
+                 <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Inspection done by:</th>
+                    </tr>
+                </thead>
+            </table>
+            <tbody>
+                {mappedInspections}
+            </tbody>
+            </div>
            
-//         </div>
-//     )
-// }
+        </div>
+    )
+}
 
-// export default Inspections;
+export default Inspections;

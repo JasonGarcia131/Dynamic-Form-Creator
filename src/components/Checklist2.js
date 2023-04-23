@@ -19,8 +19,8 @@ const Checklist2 = ({ username }) => {
         team: username,
         input: [""],
         radio: [""],
-        images: [""],
         comments: "",
+        images: [""],
         employees: [{
             firstName: "",
             lastName: "",
@@ -34,7 +34,7 @@ const Checklist2 = ({ username }) => {
         let newArray
         const { name, value } = e.target;
 
-        // if (name === "comments" || name === "team" || name === "manager" || name.includes("time")) return setCheckList({ ...checklist, [name]: value });
+        if (name === "comments" || name === "team" || name === "manager") return setCheckList({ ...checklist, [name]: value });
 
         // if (name === "radio") {
         //     newArray = [...checklist.radio];
@@ -128,7 +128,6 @@ const Checklist2 = ({ username }) => {
     }
     );
 
-
     const mappedEmployee = checklist.employees.map((employee, index) =>
         <fieldset className="border" key={index}>
             <legend>Acknowledgement</legend>
@@ -139,7 +138,7 @@ const Checklist2 = ({ username }) => {
                 type="text"
                 forName="inputField"
                 name="firstName"
-                handleChange={handleChange}
+                handleChange={handleChangeEmployee}
             />
             <Input
                 labelName="Last Name"
@@ -148,7 +147,7 @@ const Checklist2 = ({ username }) => {
                 type="text"
                 forName="inputField"
                 name="lastName"
-                handleChange={handleChange}
+                handleChange={handleChangeEmployee}
             />
             <Input
                 labelName="Title"
@@ -157,7 +156,7 @@ const Checklist2 = ({ username }) => {
                 type="text"
                 forName="inputField"
                 name="title"
-                handleChange={handleChange}
+                handleChange={handleChangeEmployee}
             />
             <Input
                 labelName="I Consent"
@@ -166,7 +165,7 @@ const Checklist2 = ({ username }) => {
                 forName="employeesField"
                 name="consent"
                 value="yes"
-                handleChange={handleChange}
+                handleChange={handleChangeEmployee}
             />
             <button onClick={(e) => handleRemove(e, index)}>Remove Employee</button>
 
@@ -177,18 +176,6 @@ const Checklist2 = ({ username }) => {
         <div className="flex center column form">
             <form onSubmit={(e) => review(e)} className={isReview ? styles.hide : styles.show}>
                 <h1>Welcome, {username}</h1>
-                {/* <input
-                    type="file"
-                    name="imageOne"
-                    accept="/image/*"
-                    onChange={(e) => handleImageChange(e)}
-                />
-                <input
-                    type="file"
-                    name="imageTwo"
-                    accept="/image/*"
-                    onChange={(e) => handleImageChange(e)}
-                /> */}
                 <Input
                     labelName="Crew Leader"
                     value={checklist.team}
@@ -200,7 +187,6 @@ const Checklist2 = ({ username }) => {
                 <br />
                 {mappedInputs}
                 <h2>Are the following safety item properly addressed, identified, and communicated?</h2>
-                {/* {mappedRadio} */}
                 <br />
                 <Input
                     type="textbox"

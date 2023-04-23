@@ -90,15 +90,16 @@ const ReviewForm = (props) => {
     const handleSubmit = async (e) => {
         // sendEmail(e);
 
-        backendObjFormat.username = checklist.team;
+        console.log("team", checklist.team)
+        backendObjFormat.submittedBy = checklist.team;
         backendObjFormat.employees = checklist.employees;
         console.log("backendobject sent", backendObjFormat)
-        // try {
-        //     const response = await axios.post("http://localhost:5000/inspection/submit", backendObjFormat);
-        //     console.log("response", response);
-        // } catch (e) {
-        //     console.log(e);
-        // }
+    //     try {
+    //         const response = await axios.post("http://localhost:5000/inspection/submit", backendObjFormat);
+    //         console.log("response", response);
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
 
     }
 
@@ -124,23 +125,6 @@ const ReviewForm = (props) => {
             <h2>Crew Leader: {checklist.team}</h2>
             {formData}
             <br />
-            <ul>
-                <li className="font-weight">
-                    <p>Employee: {checklist.employee1}</p>
-                    <p>Title: {checklist.title1}</p>
-                    <p>Consent: {checklist.consent1}</p>
-                </li>
-                <li className="font-weight">
-                    <p>Employee: {checklist.employee2}</p>
-                    <p>Title: {checklist.title2}</p>
-                    <p>Consent: {checklist.consent2}</p>
-                </li>
-                <li className="font-weight">
-                    <p>Employee: {checklist.employee3}</p>
-                    <p>Title: {checklist.title3}</p>
-                    <p>Consent: {checklist.consent3}</p>
-                </li>
-            </ul>
             <p className="font-weight">Safety Report Reviewed By Contract Group Manager or Contract Group Supervisor: {checklist.manager}</p>
             <button className="margin" onClick={(e) => handleSubmit(e)}>Send Form</button>
             <button className="margin" onClick={(e) => review(e)}>Edit</button>
