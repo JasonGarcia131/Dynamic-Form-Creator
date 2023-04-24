@@ -2,6 +2,8 @@ import { FormData } from "../data";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import emailjs from '@emailjs/browser';
+import { useNavigate } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 //Initializing global variables
 let templateParams = {}
@@ -15,6 +17,9 @@ const ReviewForm = (props) => {
 
     const { checklist, review } = props;
     const [success, setSuccess] = useState("");
+    
+    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Resets object when component reloads.
@@ -94,12 +99,14 @@ const ReviewForm = (props) => {
         backendObjFormat.submittedBy = checklist.team;
         backendObjFormat.employees = checklist.employees;
         console.log("backendobject sent", backendObjFormat)
-    //     try {
-    //         const response = await axios.post("http://localhost:5000/inspection/submit", backendObjFormat);
-    //         console.log("response", response);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
+        
+        try {
+            const response = await axiosPrivate.post("http://localhost:5000/inspection/submit", backendObjFormat);
+            console.log("response", response);
+            if(response.status === 201) return navigate('/home');
+        } catch (e) {
+            console.log(e);
+        }
 
     }
 

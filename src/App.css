@@ -12,13 +12,92 @@ table, td, tr, th {
   border: 1px solid black;
 }
 
-table{
-  width: 100%;
+thead{
+  display: table-header-group;
 }
 
-/* table{
-  width: 3rem;
-} */
+section {
+  width: 100%;
+  margin: auto;
+  max-width: 420px;
+  min-height: 400px;
+  border-radius: 10%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 5%;
+  width: 100px;
+  -moz-box-shadow: 0 0 3px rgba(54, 4, 92, 0.332);
+  -webkit-box-shadow: 0 0 3px rgba(54, 4, 92, 0.332);
+  box-shadow: 0 0 10px 5px rgba(54, 4, 92, 0.332);
+  border: 1px solid lightgrey;
+}
+
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions>svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
+}
+
+.flexGrow {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.persistCheck {
+  margin: 20px;
+}
+
 
 legend{
   font-weight: 750;
@@ -72,6 +151,15 @@ button:active {
 
 .show {
   display: inline-block;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
 }
 
 .error {

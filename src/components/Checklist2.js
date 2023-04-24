@@ -3,14 +3,31 @@ import Radio from "./Radio";
 import Input from "./Input";
 import { FormData } from "../data";
 import ReviewForm from "./ReviewForm";
+import useAuth from "../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 
 const styles = {
     hide: "hide",
     show: "show"
 }
 
-const Checklist2 = ({ username }) => {
+const Checklist2 = () => {
 
+
+    useEffect(()=>{
+
+    },[]);
+    //Authenticated User
+    const { auth } = useAuth();
+  
+    //User info decoded from the access token
+    const decode = auth.accessToken
+        ? jwt_decode(auth.accessToken)
+        : undefined
+
+    const username = decode.UserInfo.username
+
+        // console.group("user", username)
     //State variable to control review component through a ternary
     const [isReview, setIsReviewed] = useState(false);
 

@@ -151,3 +151,10 @@ export const FormData = [
     },
 
 ];
+
+export const USERS = [
+    "Jason",
+    "admin",
+    "user1"
+];
+

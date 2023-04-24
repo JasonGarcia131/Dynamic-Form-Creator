@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { Link } from "react-router-dom";
 
 const Inspectionsbyuser = (props) => {
@@ -9,6 +9,8 @@ const Inspectionsbyuser = (props) => {
     const path = window.location.pathname;
     const submittedBy = path.split('/').pop();
 
+    const axiosPrivate = useAxiosPrivate();
+
     useEffect(() => {
         getInspections();
     }, []);
@@ -16,7 +18,7 @@ const Inspectionsbyuser = (props) => {
     const getInspections = async () => {
         try {
             console.log("submmitedBy", submittedBy)
-            const response = await axios.get(`http://localhost:5000/inspection/${submittedBy}`);
+            const response = await axiosPrivate.get(`http://localhost:5000/inspection/user/${submittedBy}`);
             console.log("response", response.data);
             setInspections(response.data)
         } catch (e) {

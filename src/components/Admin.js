@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react";
+import {USERS} from "../data"
 
 const Admin = () => {
+
+    const [user, setUser] = useState("");
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate("");
+
+    console.log("users", USERS)
+    const mappedUserOptions = USERS.map((user, index)=>{
+        return(
+            <option value={user} key={index}>
+                {user}
+            </option>
+        )
+    });
+
+    const handleSubmit = () => {
+
+        if(!user || user.length === 0) return setMessage("No user selected");
+
+        navigate(`/admin-page/inspections/${user}`)
+    }
 
     return (
         <div>
@@ -14,13 +36,13 @@ const Admin = () => {
                 <p>Red flags</p>
             </main>
             
-            {/* <Link to="/admin-page/inspections">See all inspections</Link>
+            <Link to="/admin-page/inspections">See all inspections</Link>
             <label>Select inspections by user</label>
-            <select>
-                <option><Link to="/admin-page/inspections/Jason">Jason</Link></option>
-                <option><Link to="/admin-page/inspections/Arturo">Arturo</Link></option>
-                <option><Link to="/admin-page/inspections/John">John</Link></option>
-            </select> */}
+            <select value={user} onChange={(e)=>setUser(e.target.value)}>
+                <option>Select By User</option>
+                {mappedUserOptions}
+            </select>
+            <button onClick={()=>handleSubmit()}>Submit</button>
         </div>
     )
 }

@@ -1,18 +1,21 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const Inspections = (props) => {
 
     const [inspections, setInspections] = useState([]);
+    const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
         getInspections();
     }, []);
 
+
     const getInspections = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/inspection/all");
+            const response = await axiosPrivate.get("http://localhost:5000/inspection/all");
             console.log("response", response.data);
             setInspections(response.data)
         } catch (e) {
@@ -24,7 +27,7 @@ const Inspections = (props) => {
         return (
             <tr>
                 <td>{inspection.questions[0].response}</td>
-                <Link to={`/admin-page/inspections/${inspection.submittedBy}`}>{inspection.submittedBy}</Link >
+                <td><Link to={`/admin-page/inspections/${inspection._id}`}>{inspection.submittedBy}</Link ></td>
             </tr>
 
         )
@@ -41,10 +44,11 @@ const Inspections = (props) => {
                         <th>Inspection done by:</th>
                     </tr>
                 </thead>
-            </table>
+           
             <tbody>
                 {mappedInspections}
             </tbody>
+            </table>
             </div>
            
         </div>
