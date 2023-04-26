@@ -27,37 +27,38 @@ const Inspectionsbyid = (props) => {
 
     const mappedQuestions = inspections.questions?.map((question) => {
         return (
-            <th>{question.question}</th>
+            <tr>
+                 <th>{question.question}</th>
+                 <td>{question.response}</td>
+                 <td>{question.image ? <img src={question.image} alt="" /> : ""}</td>
+            </tr>
+           
         )
     });
 
-    const mappedResponses = inspections.questions?.map((response) => {
-        return (
-            <td>
-                <p>{response.response}</p>
-                {response.image ? <img src={response.image} alt="" /> : ""}
-            </td>
-        )
-    })
+    // const mappedResponses = inspections.questions?.map((response) => {
+    //     return (
+    //         <td>
+    //             <p></p>
+    //             {response.image ? <img src={response.image} alt="" /> : ""}
+    //         </td>
+    //     )
+    // })
 
 
     return (
         <div>
-            <p>total inspections:{inspections.length}</p>
             <div className="table-container">
                 <table>
-                    <thead>
-                        <tr>
-                            {mappedQuestions}
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            {mappedResponses}
-                        </tr>
-
-                    </tbody>
+                    <tr>
+                         <th>Question</th>
+                         <th>Response</th>
+                         <th>Image</th>
+                    </tr>
+                       
+                        {mappedQuestions}
+                 
+                  
                 </table>
             </div>
 

@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { Link } from "react-router-dom";
+import PaginateNav from "./PaginateNav";
 
+let limit = 10;
 const Inspectionsbyuser = (props) => {
 
     const [inspections, setInspections] = useState([]);
+    const [page, setPage] = useState({
+        next: {
+            page: 0,
+            limit: 0
+        },
+        previous: {
+            page: 0,
+            limit: 0
+        },
+    });
 
     const path = window.location.pathname;
     const submittedBy = path.split('/').pop();
@@ -18,7 +30,7 @@ const Inspectionsbyuser = (props) => {
     const getInspections = async () => {
         try {
             console.log("submmitedBy", submittedBy)
-            const response = await axiosPrivate.get(`http://localhost:5000/inspection/user/${submittedBy}`);
+            const response = await axiosPrivate.get(`http://localhost:5000/inspection/user/paginate?submittedBy=${submittedBy}&limit=${limit}&page=${page}`);
             console.log("response", response.data);
             setInspections(response.data)
         } catch (e) {
@@ -26,7 +38,7 @@ const Inspectionsbyuser = (props) => {
         }
     }
 
-    const mappedResponses = inspections.map((question) => {
+    const mappedResponses = inspections.results?.map((question) => {
         return (
             <tr>
                 <td>{question.questions[0].response}</td>
@@ -40,6 +52,7 @@ const Inspectionsbyuser = (props) => {
     return (
         <div>
             <p>total inspections:{inspections.length}</p>
+            <PaginateNav page={page} getInspections={getInspections} />
             <div className="table-container">
                 <table>
                     <thead>

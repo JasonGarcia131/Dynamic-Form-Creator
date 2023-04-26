@@ -16,6 +16,29 @@ thead{
   display: table-header-group;
 }
 
+a{
+  color: black;
+  text-decoration: none;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.paginateNav{
+  color: white
+}
+
+
+.hide {
+  visibility: hidden;
+}
+
+.unhide {
+  visibility: visible;
+}
+
+
 section {
   width: 100%;
   margin: auto;
@@ -31,14 +54,58 @@ section {
   background-color: rgba(0, 0, 0, .7);
 }
 
+.mobile-dashboard-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  /* flex-wrap: wrap; */
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.icon-container{
+  width: 100%;
+}
+
+.dashboard-section{
+  width: 45%;
+  min-height: 150px;
+  margin: 0;
+  color: black;
+  background-color: rgba(255,255,255, .9);
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img{
+  border-radius: 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.select{
+  width: 90%;
+}
+
 button {
+  background-color: rgba(117, 171, 59, 0.614);
   padding: 0.5rem;
-  border-radius: 5%;
-  width: 100px;
+  border-radius: 10px;
+  width: 100%;
   -moz-box-shadow: 0 0 3px rgba(54, 4, 92, 0.332);
   -webkit-box-shadow: 0 0 3px rgba(54, 4, 92, 0.332);
-  box-shadow: 0 0 10px 5px rgba(54, 4, 92, 0.332);
-  border: 1px solid lightgrey;
+  border: 1px solid black;
 }
 
 
@@ -123,6 +190,10 @@ img {
   overflow: scroll;
 }
 
+.icon-logo{
+  width: 100%;
+}
+
 .home {
   height: 100vh;
   text-align: center;
@@ -138,11 +209,6 @@ img {
 
 .show>input {
   margin: 5px;
-}
-
-button {
-  border-radius: 0%;
-  background-color: rgba(117, 171, 59, 0.614);
 }
 
 button:active {
